@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+//import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import 'rxjs/add/operator/map'
 
 @Injectable()
 export class ProductService {
 
     products: any = [];
-    constructor(private httpvar: Http) { }
+    constructor(private httpvar: HttpClient) { }
 
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'my-auth-token'
+        })
+    };
 
     getProducts() {
 
-        this.httpvar.request('http://localhost:3000/products')
-            .map(res =>
-                res.json())
+        this.httpvar.get('http://localhost:3000/products')
             .subscribe((result) => {
                 this.products = result;
                 console.log(this.products);
@@ -34,31 +38,25 @@ export class ProductService {
             description
         }
 
-        let headers: Headers = new Headers({ 'content-type': 'application/json' })
-        let opts: RequestOptions = new RequestOptions();
-        opts.headers = headers;
 
         this.httpvar.post(
             'http://localhost:3000/products',
             JSON.stringify(product),
-            opts
+            this.httpOptions
         )
-            .map((res) => res.json())
             .subscribe((result: Response) => {
-                // console.log('res',result);
+                console.log('res',result);
                 this.products.push(result);
             });
 
     }
 
     updateProduct(product) {
-        let headers: Headers = new Headers({ 'Content-Type': 'application/json' })
-        let opts: RequestOptions = new RequestOptions();
-        opts.headers = headers;
-
-
-        this.httpvar.put('http://localhost:3000/products' + product.id, JSON.stringify(product), opts)
-            .map((res) => res.json())
+        this.httpvar.put(
+            'http://localhost:3000/products' + product.id, 
+            JSON.stringify(product), 
+            this.httpOptions
+            )
             .subscribe((result: Response) => {
                 console.log("user updated", result);
             });

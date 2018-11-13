@@ -46,8 +46,6 @@ hidecomponent()
   getProducts()
   {
     this.productservice.getProducts();
-
-    // console.log( this.productservice.getUsers());
   }
 
   DeleteProduct(product)
