@@ -1,55 +1,39 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!-- Include header file here -->
-<div style="text-align:center">
-  
-    <img width="20" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-  </div>
-  
-  <div class="gap-5"></div>
-  
-  <app-product-details *ngIf="showdialog" (gotoparent)="hidecomponent()" [product]=productToUpdate></app-product-details>
-  
-  <div class="container">
+  <div class="container"> 
     <div class="row">
       <div class="col-md-12">
-        <div class="pull-right">
-          <button class="btn btn-info" (click)="showbutton()"> + Add Product </button>
-        </div>
-      </div>
-    </div>
-  
-    {{productservice.users |json}}
-    <hr>
-    <div class="row">
-      <div class="col-md-12">
-  
-        <table class="table table-striped text-center table-hover table-responsive">
+          <h4> Product List </h4>
+          <hr>
+        <table class="table table-striped table-hover table-responsive">
           <thead>
-            <th class="text-center">Id</th>
-            <th class="text-center">Title</th>
-            <th class="text-center">description</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>description</th>
+            <th> Action </th>
           </thead>
   
           <tbody>
             <tr *ngFor="let product of productservice.products;index as i">
               <td>{{product.id}}</td>
               <td>{{product.title}}</td>
-              <td>{{product.description}}</td>
+              <td>{{product.description}}</td>              
               <td>
-                <button class="btn btn-danger" (click)="DeleteProduct(product)">Delete</button>
+                <button class="btn btn-danger btn-sm" (click)="DeleteProduct(product)">Delete</button>
+                <button class="btn btn-primary btn-sm" (click)="showbutton(product)">Update</button>
               </td>
-              <td>
-                <button class="btn btn-primary" (click)="showbutton(product)">Update</button>
-              </td>
-  
             </tr>
           </tbody>
   
         </table>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pull-left">
+          <button class="btn btn-info" (click)="showbutton()"> + Add Product </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <app-product-details *ngIf="showdialog" (gotoparent)="hidecomponent()" [product]=productToUpdate></app-product-details>
+    </div>
   </div>
-  
-  <!-- <button (click)="showbutton()"> + Add User </button> -->
-  
-  <!-- <app-user-details *ngIf="showdialog" (gotoparent)="hidecomponent()" [user]=userToUpdate></app-user-details> -->

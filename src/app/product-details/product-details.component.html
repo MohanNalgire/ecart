@@ -1,30 +1,29 @@
-<!-- <p>
-  Enter User Details
-</p> -->
-
-<!-- <div>
-
-  <label>First Name :</label> <input type="text" [(ngModel)]="user.FirstName"> <br>
-
-  <label>LastName :</label> <input type="text" [(ngModel)]="user.LastName"> <br>
-
-  <button (click)="createUser()"> <div *ngIf="user.id"> update user</div> <div *ngIf="!user.id">Create User</div> </button>
-  
-
-</div> -->
-
 <div class="container">
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-  
-          <label>Title:</label> <input type="text" [(ngModel)]="product.title"> <br><br>
-  
-          <label>Description :</label> <input type="text" [(ngModel)]="product.description"> <br> <br>
-        
-          <button class="btn btn-primary" (click)="createProduct()"> <div *ngIf="product.id"> update user</div> <div *ngIf="!product.id">Create Product</div> </button>
-  
+  <div class="row">
+    <div class="col-md-4">
+      <div class="col-md-12 margT15">
+        <div class="col-md-5">
+          <label>Title:</label>
+        </div>
+        <div class="col-md-7">
+          <input class="form-control" type="text" [(ngModel)]="product.title">
+        </div>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-12 margT15">
+        <div class="col-md-5">
+          <label>Description :</label>
+        </div>
+        <div class="col-md-7">
+          <input class="form-control" type="text" [(ngModel)]="product.description">
+        </div>
+      </div>
+      <div class="col-md-12 margT25">
+          <button class="btn btn-primary" (click)="createProduct()">
+              <div *ngIf="product.id"> update user</div>
+              <div *ngIf="!product.id">Create Product</div>
+            </button>
+      </div>
     </div>
+    
   </div>
+</div>

@@ -1,9 +1,19 @@
 {
   "products": [
     {
-      "title": "test ",
-      "description": "test 2",
-      "id": 4
+      "title": "Task1 ",
+      "description": "Description",
+      "id": 1
+    },
+    {
+      "title": "Task2 ",
+      "description": "Description",
+      "id": 2
+    },
+    {
+      "title": "Task3 ",
+      "description": "Description",
+      "id": 3
     }
   ]
 }
