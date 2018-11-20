@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
     .subscribe(
       (res)=> {
       this.cartProducts=res;
+      this.cartcount= Object.keys(res).length;
       console.log('mycart',this.cartProducts);
     },
     function(error){

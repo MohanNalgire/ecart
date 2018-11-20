@@ -71,10 +71,6 @@ import { CartDetailsComponent } from './cart/cart-details/cart-details.component
         component:ProductDetailsComponent
       },
       {
-        path:'productDashboard',
-        component:ProductsDashboardComponent
-      },
-      {
         path:'cart',
         component:CartComponent
       }
