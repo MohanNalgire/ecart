@@ -2,7 +2,7 @@ import { Component, OnInit,Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 //Service 
-import { ProductService }  from '../product.service';
+import { ProductService }  from '../../product.service';
 
 @Component({
   selector: 'app-product-details',

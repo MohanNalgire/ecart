@@ -1,25 +1,25 @@
 {
   "products": [
     {
-      "title": "Task1 ",
+      "title": "product1 ",
       "description": "Description",
       "id": 1,
       "price":100
     },
     {
-      "title": "Task2 ",
+      "title": "product2 ",
       "description": "Description",
       "id": 2,
       "price":100
     },
     {
-      "title": "task3",
-      "description": "task 3 descrition",
+      "title": "product3",
+      "description": "product 3 descrition",
       "id": 3,
       "price":100
     },
     {
-      "title": "task 4",
+      "title": "product4",
       "description": "description",
       "id": 4,
       "price":100
@@ -27,7 +27,7 @@
   ],
   "cartProducts": [
     {
-      "title": "Task3 ",
+      "title": "product3 ",
       "description": "Description",
       "id": 3,
       "price":100,
