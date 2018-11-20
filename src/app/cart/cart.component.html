@@ -1,3 +1,18 @@
-<p>
-  cart works!
-</p>
+<ul>
+  <li><a routerLink="/home">Home</a></li>
+  <li><a routerLink="/admin">Admin</a></li>
+</ul>
+<section class="container">
+  <div class="card" *ngIf="cartProducts">
+    <h5 class="card-header">My Cart {{cartcount}}</h5>
+    <div class="card-body" *ngFor="let cartProduct of cartProducts; index as i">
+      <h5 class="card-title">{{cartProduct.title}}</h5>
+      <p class="card-text">{{cartProduct.description}}</p>
+      <div>{{cartProduct.price}}</div>
+      <div><button >-</button><span>{{cartProduct.quantity}}</span><button>+</button></div>
+      <button class="btn btn-primary" (click)="removeItem(cartProduct.id)">Remove</button>
+    </div>
+  </div>
+</section>
+
+test{{cartProducts|json}}

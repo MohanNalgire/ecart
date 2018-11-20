@@ -16,6 +16,10 @@ import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsDashboardComponent } from './products-dashboard/products-dashboard.component';
 
+//router 
+import {RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +30,41 @@ import { ProductsDashboardComponent } from './products-dashboard/products-dashbo
     ProductDetailsComponent,
     ProductComponent,
     CartComponent,
-    ProductsDashboardComponent
+    ProductsDashboardComponent,
+    AdminComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
 
+    RouterModule.forRoot([
+      {
+        path:'',
+        component:ProductsDashboardComponent
+      },
+      {
+        path:'admin',
+        component:AdminComponent
+      },
+      {
+        path:'product',
+        component:ProductComponent
+      },
+      {
+        path:'productDetails',
+        component:ProductDetailsComponent
+      },
+      {
+        path:'productDashboard',
+        component:ProductsDashboardComponent
+      },
+      {
+        path:'cart',
+        component:CartComponent
+      }
+    ])
   ],
   providers: [
     ProductService

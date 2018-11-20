@@ -1,3 +1,38 @@
 <div class="container">
-  {{productsList|json}}
-</div>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Navbar content -->
+      <button type="button" class="pull-right btn btn-warning" (click)="goToCart()" >
+        <span class="fas fa-cart-plus"></span> <span class="badge badge-light"> {{cartIteamCount}}</span>
+      </button>
+      
+        <a class="navbar-brand" routerLink="/admin" >Admin</a>
+      
+    </nav>
+
+
+
+  </header>
+
+  <section>
+    <div class="row">
+
+      <div class="col-sm-6" *ngFor="let product of productsList;index as i">
+        <div class="card" style="width:18rem;" >
+            <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{product.title}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            <button class="btn btn-primary btn-lg" id="{{product.id}}" (click)="addToCart(product.id)">
+              <span class="fas fa-cart-arrow-down"></span> ADD TO CART
+            </button>
+          </div>
+        </div>
+        <br>
+      </div>
+      
+    </div>
+  </section>
+  </div>
+
+  <!--{{productsList|json}}-->

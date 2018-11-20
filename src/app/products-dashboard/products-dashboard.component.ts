@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { Router }  from  '@angular/router';
 
 @Component({
   selector: 'app-products-dashboard',
@@ -12,9 +12,12 @@ import { HttpClient } from '@angular/common/http';
 export class ProductsDashboardComponent implements OnInit {
   productsList:any=[];
 
+  cartIteamCount:number=0;
+
   constructor(
     private httpclient:HttpClient,
-    private productservice:ProductService
+    private productservice:ProductService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -31,5 +34,18 @@ export class ProductsDashboardComponent implements OnInit {
             })
 
     console.log( typeof this.productsList);
+  }
+
+  addToCart(product_id){
+
+    console.log(`Our cart product id is ${product_id}`);
+
+    this.cartIteamCount +=1;
+    console.log('cart count',this.cartIteamCount);
+  }
+
+
+  goToCart(){
+    this.router.navigateByUrl('/cart');
   }
 }

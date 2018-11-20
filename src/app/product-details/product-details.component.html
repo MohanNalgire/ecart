@@ -1,29 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <div class="col-md-12 margT15">
-        <div class="col-md-5">
-          <label>Title:</label>
-        </div>
-        <div class="col-md-7">
-          <input class="form-control" type="text" [(ngModel)]="product.title">
-        </div>
-      </div>
-      <div class="col-md-12 margT15">
-        <div class="col-md-5">
-          <label>Description :</label>
-        </div>
-        <div class="col-md-7">
-          <input class="form-control" type="text" [(ngModel)]="product.description">
-        </div>
-      </div>
-      <div class="col-md-12 margT25">
-          <button class="btn btn-primary" (click)="createProduct()">
-              <div *ngIf="product.id"> update user</div>
-              <div *ngIf="!product.id">Create Product</div>
-            </button>
-      </div>
+    <div class="col-md-6">Title</div>
+    <div class="col-md-6">
+      <input class="form-control" type="text" [(ngModel)]="product.title">
     </div>
-    
+  </div>
+  <div class="row">
+    <div class="col-md-6">Description</div>
+    <div class="col-md-6">
+      <input class="form-control" type="text" [(ngModel)]="product.description">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <button class="btn btn-primary" (click)="createProduct()">
+            <div *ngIf="product.id"> update user</div>
+            <div *ngIf="!product.id">Create Product</div>
+          </button>
+    </div>
+    <div class="col-md-6">
+
+    </div>
   </div>
 </div>

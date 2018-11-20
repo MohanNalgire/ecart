@@ -1,4 +1,8 @@
-  <div class="container"> 
+<ul>
+  <li ><a routerLink="/home" >Home</a></li>
+  <li ><a routerLink="/admin" >Admin</a></li>
+</ul>
+<div class="container"> 
     <div class="row">
       <div class="col-md-12">
           <h4> Product List </h4>
@@ -37,3 +41,4 @@
       <app-product-details *ngIf="showdialog" (gotoparent)="hidecomponent()" [product]=productToUpdate></app-product-details>
     </div>
   </div>
+  <router-outlet></router-outlet>
