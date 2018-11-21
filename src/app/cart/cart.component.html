@@ -9,7 +9,11 @@
       <h5 class="card-title">{{cartProduct.title}}</h5>
       <p class="card-text">{{cartProduct.description}}</p>
       <div>{{cartProduct.price}}</div>
-      <div><button >-</button><span>{{cartProduct.quantity}}</span><button>+</button></div>
+      <div>
+        <button (click)="removeCartProductQuantity(cartProduct.id)" >-</button>
+        <span>{{cartProduct.quantity}}</span>
+        <button (click)="addCartProductQuantity(cartProduct.id)">+</button>
+      </div>
       <button class="btn btn-primary" (click)="removeCartItem(cartProduct.id)">Remove</button>
     </div>
   </div>

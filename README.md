@@ -52,3 +52,49 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 3   An HttpClient method does not begin its HTTP request until you call subscribe() on the observable returned by that method. This is true for all HttpClient methods.
 4   In fact, each subscribe() initiates a separate, independent execution of the observable. Subscribing twice results in two HTTP requests.
 5 
+
+
+
+## Pipeable Operators
+1   do -> tap
+2   catch -> catchError
+3   switch -> switchAll
+4   finally -> finalize
+
+
+## Essentials
+map
+filter
+scan
+merge
+
+##Taking
+take
+takeWhile
+first
+
+## Skipping
+skip (soon)
+skipWhile
+takeLast
+last
+
+##Time
+delay
+debounceTime
+throttleTime
+
+##Reducing
+reduce
+min (soon)
+max
+count
+
+##Concatenating
+startWith (soon)
+endWith (soon)
+concat (soon)
+
+## Combining
+combineLatest
+zip
