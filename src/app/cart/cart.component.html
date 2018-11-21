@@ -10,7 +10,7 @@
       <p class="card-text">{{cartProduct.description}}</p>
       <div>{{cartProduct.price}}</div>
       <div><button >-</button><span>{{cartProduct.quantity}}</span><button>+</button></div>
-      <button class="btn btn-primary" (click)="removeItem(cartProduct.id)">Remove</button>
+      <button class="btn btn-primary" (click)="removeCartItem(cartProduct.id)">Remove</button>
     </div>
   </div>
 </section>

@@ -26,3 +26,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 "# CRUDANGULAR" 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Notes 
+
+
+## Httpclient
+1   All observables returned from HttpClient methods are cold by design.
+2   The AsyncPipe subscribes (and unsubscribes) for you automatically.
+3   An HttpClient method does not begin its HTTP request until you call subscribe() on the observable returned by that method. This is true for all HttpClient methods.
+4   In fact, each subscribe() initiates a separate, independent execution of the observable. Subscribing twice results in two HTTP requests.
+5 

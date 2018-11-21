@@ -30,6 +30,8 @@ import { CartComponent } from './cart/cart.component';
 import { CartListComponent } from './cart/cart-list/cart-list.component';
 import { CartDetailsComponent } from './cart/cart-details/cart-details.component';
 
+//router Module
+import { AppRoutingRoutingModule } from './_sharedModules/app-routing-routing.module';
 
 @NgModule({
   declarations: [
@@ -53,36 +55,8 @@ import { CartDetailsComponent } from './cart/cart-details/cart-details.component
     FormsModule,
     HttpClientModule,
 
-    RouterModule.forRoot([
-      {
-        path:'',
-        redirectTo:'productDashboard',
-        pathMatch:'full'
-      },
-      {
-        path:'admin',
-        component:AdminComponent
-      },
-      {
-        path:'product',
-        component:ProductComponent
-      },
-      {
-        path:'productDetails',
-        component:ProductDetailsComponent
-      },
-      {
-        path:'productDashboard',
-        component:ProductsDashboardComponent
-      },
-      {
-        path:'cart',
-        component:CartComponent
-      },
-      {
-        path: '**', component: ProductsDashboardComponent
-      } 
-    ])
+    AppRoutingRoutingModule,
+    
   ],
   providers: [
     ProductService

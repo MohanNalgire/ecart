@@ -4,6 +4,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router }  from  '@angular/router';
 
+//services
+import { CartService } from '../cart/cart.service';
+
+
 @Component({
   selector: 'app-products-dashboard',
   templateUrl: './products-dashboard.component.html',
@@ -12,7 +16,7 @@ import { Router }  from  '@angular/router';
 export class ProductsDashboardComponent implements OnInit {
   productsList:any=[];
   productById:any={};
-  cartIteamCount:number=0;
+  cartIteamCount:number;
   
 
   httpOptions = {
@@ -23,23 +27,31 @@ export class ProductsDashboardComponent implements OnInit {
   };
 
   public getProductbyid:any;
+  public 
 
   constructor(
     private httpclient:HttpClient,
     private productservice:ProductService,
-    private router:Router
+    private router:Router,
+    private cartservice:CartService
   ) { }
 
   ngOnInit() {
     this.getProducts();
+    this.getCountOfCartProduct();
   }
 
   getProducts()
   {
     this.httpclient.get('http://localhost:3000/products')
-            .subscribe((result) => {
+            .subscribe(
+              (result) => {
                 this.productsList = result;
-            })
+            },
+            (error)=>{
+              console.error('Service getProducts is down.',error);
+            }
+            )
   }
 
 
@@ -83,5 +95,22 @@ export class ProductsDashboardComponent implements OnInit {
 
   goToCart(){
     this.router.navigateByUrl('/cart');
+  }
+
+  getCountOfCartProduct()
+  {
+      this.cartservice.getCartProducts()
+      .subscribe(
+        (res)=> {
+        this.cartIteamCount= Object.keys(res).length;
+        console.log('mycart',this.cartIteamCount);
+      },
+      function(error){
+        console.error(error);
+      },
+      function(){
+        console.log('completed subscription.');
+      }
+      );
   }
 }

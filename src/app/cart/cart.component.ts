@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from './cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,8 @@ export class CartComponent implements OnInit {
   cartProducts:any;
   
   constructor(
-    private httpclient:HttpClient
+    private httpclient:HttpClient,
+    private cartservice:CartService
   ) { }
 
   ngOnInit() {
@@ -35,6 +37,11 @@ export class CartComponent implements OnInit {
     }
     );
     
+  }
+
+  removeCartItem(cartProductId)
+  {
+    this.cartservice.removeCartItem(cartProductId).subscribe();
   }
 
 }
