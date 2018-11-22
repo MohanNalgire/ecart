@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
@@ -13,8 +13,6 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { ProductsDashboardComponent } from './products-dashboard/products-dashboard.component';
 
-//router 
-import {RouterModule } from '@angular/router';
 
 //admin
 import { AdminComponent } from './admin/admin.component';
@@ -32,6 +30,19 @@ import { CartDetailsComponent } from './cart/cart-details/cart-details.component
 
 //router Module
 import { AppRoutingRoutingModule } from './_sharedModules/app-routing-routing.module';
+
+//Environment 
+import { environment } from './../environments/environment';
+
+//NgRx Modules
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers, metaReducers } from './store/reducers';
+import { AppEffects } from './store/effects/app.effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { CartEffects } from './store/effects/cart.effects';
 
 @NgModule({
   declarations: [
@@ -54,8 +65,12 @@ import { AppRoutingRoutingModule } from './_sharedModules/app-routing-routing.mo
     BrowserModule,
     FormsModule,
     HttpClientModule,
-
+    //routingModule
     AppRoutingRoutingModule,
+    //NgRx StoreModule
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([AppEffects, AuthEffects, CartEffects]),
     
   ],
   providers: [
