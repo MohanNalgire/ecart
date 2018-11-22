@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+
 import { AppComponent } from './app.component';
 
 //Services 
@@ -29,7 +32,7 @@ import { CartListComponent } from './cart/cart-list/cart-list.component';
 import { CartDetailsComponent } from './cart/cart-details/cart-details.component';
 
 //router Module
-import { AppRoutingRoutingModule } from './_sharedModules/app-routing-routing.module';
+import { AppRoutingRoutingModule } from './_sharedModules/app-routing.module';
 
 //Environment 
 import { environment } from './../environments/environment';
@@ -44,25 +47,20 @@ import { AppEffects } from './store/effects/app.effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { CartEffects } from './store/effects/cart.effects';
 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    
-    ProductDetailsComponent,
-    ProductComponent,
-    CartComponent,
     ProductsDashboardComponent,
-    AdminComponent,
-    HeaderComponent,
-    ProductListComponent,
+    HeaderComponent,    
     FooterComponent,
-    CartListComponent,
-    CartDetailsComponent,
-    AdminListComponent,
-    AdminDetailsComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+
     FormsModule,
     HttpClientModule,
     //routingModule

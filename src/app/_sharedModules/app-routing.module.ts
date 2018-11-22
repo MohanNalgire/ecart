@@ -11,21 +11,12 @@ import { ProductDetailsComponent } from '../product/product-details/product-deta
 //Routes for only main module
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'productDashboard',
-    pathMatch:'full'
-  },
-  {
     path:'admin',
-    component:AdminComponent
-  },
+    loadChildren:'../admin/admin.module#AdminModule'
+    },
   {
     path:'product',
-    component:ProductComponent
-  },
-  {
-    path:'productDetails',
-    component:ProductDetailsComponent
+    loadChildren:'../product/product.module#ProductModule'
   },
   {
     path:'productDashboard',
@@ -33,7 +24,12 @@ const routes: Routes = [
   },
   {
     path:'cart',
-    component:CartComponent
+    loadChildren:'../cart/cart.module#CartModule'
+  },
+  {
+    path:'',
+    redirectTo:'productDashboard',
+    pathMatch:'full'
   },
   {
     path: '**', component: ProductsDashboardComponent
@@ -42,7 +38,11 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(
+      routes,{ enableTracing: true } // <-- debugging purposes only
+      )
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingRoutingModule { }
