@@ -50,6 +50,7 @@ import { CartEffects } from './store/effects/cart.effects';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
+  //The set of components, directives, and pipes (declarables) that belong to this module.
   declarations: [
     AppComponent,
     ProductsDashboardComponent,
@@ -57,6 +58,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FooterComponent,
     PageNotFoundComponent
   ],
+  //The set of NgModules whose exported declarables are available to templates in this module.
   imports: [
     BrowserModule,
     CommonModule,
@@ -71,9 +73,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EffectsModule.forRoot([AppEffects, AuthEffects, CartEffects]),
     
   ],
+  //The set of injectable objects that are available in the injector of this module.
   providers: [
     ProductService
   ],
+  //The set of components that are bootstrapped when this module is bootstrapped. 
+  //The components listed here are automatically added to entryComponents.
   bootstrap: [AppComponent]
 })
 export class AppModule { }
