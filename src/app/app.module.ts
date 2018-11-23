@@ -7,32 +7,17 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 
-//Services 
-import { ProductService } from './product.service';
 
-//product
-import { ProductComponent } from './product/product.component';
-import { ProductListComponent } from './product/product-list/product-list.component';
-import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { ProductsDashboardComponent } from './products-dashboard/products-dashboard.component';
-
-
-//admin
-import { AdminComponent } from './admin/admin.component';
-import { AdminListComponent } from './admin/admin-list/admin-list.component';
-import { AdminDetailsComponent } from './admin/admin-details/admin-details.component';
 
 //header footer
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-//cart
-import { CartComponent } from './cart/cart.component';
-import { CartListComponent } from './cart/cart-list/cart-list.component';
-import { CartDetailsComponent } from './cart/cart-details/cart-details.component';
+
 
 //router Module
-import { AppRoutingRoutingModule } from './_sharedModules/app-routing.module';
+import { AppRoutingRoutingModule } from './_shared/app-routing.module';
 
 //Environment 
 import { environment } from './../environments/environment';
@@ -48,6 +33,9 @@ import { AuthEffects } from './store/effects/auth.effects';
 import { CartEffects } from './store/effects/cart.effects';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { ErrorHandlerService } from './_shared/error-handler.service';
+import { ProductService } from './product/services/product.service';
 
 @NgModule({
   //The set of components, directives, and pipes (declarables) that belong to this module.
@@ -75,6 +63,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   //The set of injectable objects that are available in the injector of this module.
   providers: [
+    ErrorHandlerService,
     ProductService
   ],
   //The set of components that are bootstrapped when this module is bootstrapped. 

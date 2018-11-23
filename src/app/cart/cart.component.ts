@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CartService } from './cart.service';
+import { CartService } from './services/cart.service';
 
+import { Cart } from './models/cart';
 import { Observable, interval, pipe } from "rxjs";
 import { map } from 'rxjs/operators';
 
@@ -52,32 +53,55 @@ export class CartComponent implements OnInit {
 
   getCartProductById(cartProductId)
   {
-    this.cartservice.getCartProductById(cartProductId)
-    .pipe(
-      map(
-        (data)=>{
-          console.log('Method getCartProductById - data:',data);
-          this.selectedData=data;
-        })
-    ).subscribe(result => {
-      console.log(result);
-    });
+    
   }
 
   addCartProductQuantity(cartProductId)
   {
-    this.getCartProductById(cartProductId);
-    let selectedproduct = this.selectedData;
-    selectedproduct.quantity += 1;
-    console.log('selected product for addCartProductQuantity',selectedproduct);
+    this.cartservice.getCartProductById(cartProductId)
+      .subscribe(
+        (result) => {
+        console.log('cartservice.getCartProductById',result.quantity);
+        let selectedproduct = result;
+        selectedproduct.quantity += 1;
+        selectedproduct.quantityPrice=(selectedproduct.quantity>0)?selectedproduct.quantity*selectedproduct.price:selectedproduct.quantityPrice=0;
 
-    this.cartservice.updateCartItem(cartProductId,selectedproduct);
-    console.log('test');
+        console.log('selected product for addCartProductQuantity',selectedproduct);
+        this.cartservice.updateCartItem(cartProductId,selectedproduct)
+        .subscribe(
+          (data)=>{console.log('completed update.',data);},
+          (error)=>{console.error('update service error.',error);},
+          ()=>{console.log('completed update service');}
+        );
+
+      },
+      ()=>{}
+      );
+      //update view template.
+      this.getCartProducts();
   }
 
   removeCartProductQuantity(cartProductId)
   {
-
+    this.cartservice.getCartProductById(cartProductId)
+      .subscribe(
+        (result)=>{
+          let selectedproduct = result;
+          selectedproduct.quantity -=1;
+          selectedproduct.quantityPrice=(selectedproduct.quantity>0)?selectedproduct.quantity*selectedproduct.price:selectedproduct.quantityPrice=0;
+          
+          console.log('cartservice.getCartProductQuantity',selectedproduct.price);
+          this.cartservice.updateCartItem(cartProductId,selectedproduct)
+          .subscribe(
+            (data)=>{console.log('completed update.',data);},
+            (error)=>{console.error('update service error.',error);},
+            ()=>{console.log('completed update service');}
+          )
+        },
+        ()=>{}
+      );
+      //update view template.
+      this.getCartProducts();
   }
 
   

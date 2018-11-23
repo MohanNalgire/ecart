@@ -33,5 +33,24 @@
       "image": ""
     }
   ],
-  "cartProducts": []
+  "cartProducts": [
+    {
+      "title": "product2 ",
+      "description": "Description",
+      "id": 2,
+      "price": 100,
+      "quantity": 3,
+      "quantityPrice": 300,
+      "image": ""
+    },
+    {
+      "title": "product4",
+      "description": "description",
+      "id": 4,
+      "price": 100,
+      "quantity": 0,
+      "quantityPrice": 0,
+      "image": ""
+    }
+  ]
 }

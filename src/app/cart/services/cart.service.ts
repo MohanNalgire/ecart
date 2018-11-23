@@ -37,20 +37,12 @@ export class CartService {
 
   removeCartItem(cartProductId):Observable<any>
   {
-    return this.httpclient.delete<any>(`${this.cartServiceURL}/${cartProductId}`,this.httpOptions)
-    .pipe(
-      tap(_ => console.log(`deleted product id=${cartProductId}`)),
-      catchError(this.handleError<any>('deleteProduct'))
-    );
+    return this.httpclient.delete<any>(`${this.cartServiceURL}/${cartProductId}`,this.httpOptions);
   }
 
   updateCartItem(cartProductId:number,product):Observable<any>
-  {
-    return this.httpclient.put(`${this.cartServiceURL}/${cartProductId}`,product,this.httpOptions)
-    .pipe(
-      tap(_ => console.log(`updated product id=${cartProductId}`)),
-      catchError(this.handleError<any>('updateCartItem'))
-    );
+  { 
+    return this.httpclient.put(`${this.cartServiceURL}/${cartProductId}`,product,this.httpOptions);
   }
 
   //Error handling function

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
-import { Observable, ReplaySubject } from 'rxjs';
+import { ProductService } from '../product/services/product.service';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router }  from  '@angular/router';
 
 //services
-import { CartService } from '../cart/cart.service';
-
+import { CartService } from '../cart/services/cart.service';
+//rxjs
+import { Observable, ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-products-dashboard',
@@ -17,6 +18,8 @@ export class ProductsDashboardComponent implements OnInit {
   productsList:any=[];
   productById:any={};
   cartIteamCount:number;
+
+  productUrl:string= 'http://localhost:3000/products';
   
 
   httpOptions = {
@@ -43,7 +46,7 @@ export class ProductsDashboardComponent implements OnInit {
 
   getProducts()
   {
-    this.httpclient.get('http://localhost:3000/products')
+    this.httpclient.get(this.productUrl)
             .subscribe(
               (result) => {
                 this.productsList = result;
@@ -60,7 +63,7 @@ export class ProductsDashboardComponent implements OnInit {
     this.cartIteamCount +=1;
     console.log('cart count',this.cartIteamCount);
 
-    return this.httpclient.get(`http://localhost:3000/products/${product_id}`);
+    return this.httpclient.get(`${this.productUrl}/${product_id}`);
     
 
   }
@@ -71,7 +74,7 @@ export class ProductsDashboardComponent implements OnInit {
     .subscribe(
       (data)=>{
         if(data){
-          this.httpclient.post('http://localhost:3000/cartProducts',data,this.httpOptions)
+          this.httpclient.post(this.productUrl,data,this.httpOptions)
           .subscribe(
             (data)=>{
               console.log("POST Request is successful ", data);

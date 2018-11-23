@@ -7,14 +7,45 @@
     <h5 class="card-header">My Cart {{cartcount}}</h5>
     <div class="card-body" *ngFor="let cartProduct of cartProducts; index as i">
       <h5 class="card-title">{{cartProduct.title}}</h5>
-      <p class="card-text">{{cartProduct.description}}</p>
-      <div>{{cartProduct.price}}</div>
-      <div>
-        <button (click)="removeCartProductQuantity(cartProduct.id)" >-</button>
-        <span>{{cartProduct.quantity}}</span>
-        <button (click)="addCartProductQuantity(cartProduct.id)">+</button>
+      <div class="row">
+        <div class="col-md-6" >
+
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col">PER PRODUCT PRICE</div>
+                <div class="col">:</div>
+                <div class="col">{{cartProduct.price}}</div>
+              </div>
+              <div class="row">
+                <div class="col">TOTAL PRICE</div>
+                <div class="col"> : </div>
+                <div class="col">{{cartProduct.quantityPrice}}</div>
+              </div>
+              <div class="row">
+                <div class="col">quantity</div>
+                <div class="col"></div>
+                <div class="col"><button (click)="removeCartProductQuantity(cartProduct.id)">-</button>
+                  <span>{{cartProduct.quantity}}</span>
+                  <button (click)="addCartProductQuantity(cartProduct.id)">+</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">:</div>
+                <div class="col">{{cartProduct.description}}</div>
+              </div>
+              <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col">
+                  <button class="btn btn-primary" (click)="removeCartItem(cartProduct.id)">Remove</button>
+                  <button class="btn btn-primary" (click)="buyCartItem(cartProduct.id)">Buy Product</button></div>
+              </div>
+        
+        </div>
       </div>
-      <button class="btn btn-primary" (click)="removeCartItem(cartProduct.id)">Remove</button>
+      
     </div>
   </div>
 </section>

@@ -42,7 +42,8 @@ const routes: Routes = [
   //The set of NgModules whose exported declarables are available to templates in this module.
   imports: [
     RouterModule.forRoot(
-      routes, { enableTracing: true } // <-- debugging purposes only
+      routes 
+      //{ enableTracing: true } // <-- debugging purposes only
     )
   ],
   //The set of components, directives, and pipes declared in this NgModule that can be used in the template of any component that is part of an NgModule that imports this NgModule. Exported declarations are the module's public API.
