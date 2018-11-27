@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProductComponent } from '../product/product.component';
-import { ProductsDashboardComponent } from '../products-dashboard/products-dashboard.component';
-import { AdminComponent } from '../admin/admin.component';
-import { CartComponent } from '../cart/cart.component';
 
-import { ProductDetailsComponent } from '../product/product-details/product-details.component';
+import { ProductsDashboardComponent } from '../products-dashboard/products-dashboard.component';
+
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 //Routes for only main module
