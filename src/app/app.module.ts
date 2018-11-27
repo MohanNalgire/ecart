@@ -23,14 +23,13 @@ import { AppRoutingRoutingModule } from './_shared/app-routing.module';
 import { environment } from './../environments/environment';
 
 //NgRx Modules
-import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers, metaReducers } from './store/reducers';
-import { AppEffects } from './store/effects/app.effects';
-import { AuthEffects } from './store/effects/auth.effects';
-import { CartEffects } from './store/effects/cart.effects';
+
+import { reducer} from './store/reducers/cart.reducer';
+
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -56,9 +55,13 @@ import { ProductService } from './product/services/product.service';
     //routingModule
     AppRoutingRoutingModule,
     //NgRx StoreModule
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot({cart: reducer}),//* Initialise the Central Store with Application's main reducer*/
+    // Module must be connected after StoreModule
+    StoreDevtoolsModule.instrument ({
+      maxAge: 25, // Store the last 25 states
+    }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects, AuthEffects, CartEffects]),
+    EffectsModule.forRoot([]),
     
   ],
   //The set of injectable objects that are available in the injector of this module.

@@ -1,11 +1,18 @@
-import { Action } from '@ngrx/store';
+import { Action } from '@ngrx/store'
 
-export enum CartActionTypes {
-  LoadCarts = '[Cart] Load Carts'
+export enum CartActionTypes {  
+    ADD_PRODUCT = 'ADD_PRODUCT',
+    REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 }
 
-export class LoadCarts implements Action {
-  readonly type = CartActionTypes.LoadCarts;
+export class AddProduct implements Action {  
+    readonly type = CartActionTypes.ADD_PRODUCT
+    constructor(public payload: any){}
 }
 
-export type CartActions = LoadCarts;
+export class RemoveProduct implements Action {  
+    readonly type = CartActionTypes.REMOVE_PRODUCT
+    constructor(public payload: any){}
+}
+
+export type CartActions = AddProduct | RemoveProduct  
