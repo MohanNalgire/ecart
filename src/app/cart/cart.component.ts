@@ -6,6 +6,11 @@ import { Cart } from './models/cart.model';
 import { Observable, interval, pipe } from "rxjs";
 import { map } from 'rxjs/operators';
 
+import { Store } from '@ngrx/store';
+import { CartState } from './store/cart.state';
+import * as CartActions from "./store/cart.actions";
+
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,22 +19,33 @@ import { map } from 'rxjs/operators';
 export class CartComponent implements OnInit, OnDestroy {
   //Class properties declaration.
   cartcount: number = 0;
+  //for service
   cartProducts: any;
   selectedData: any;
 
+  //for store
+  //cartProducts: Observable<Cart[]>;
+
+  productUrl: string = 'http://localhost:3000/products';
+  cartProductUrl: string = 'http://localhost:3000/cartProducts';
+
   constructor(
     private httpclient: HttpClient,
-    private cartservice: CartService
-  ) { }
+    private cartservice: CartService,
+    private store: Store<CartState>
+  ) {
+    //this.cartProducts = store.select('cart');//StoreModule.forRoot({cart: reducer}) defined
+  }
 
   ngOnInit() {
     this.getCartProducts();
   }
 
   getCartProducts() {
-    this.httpclient.get('http://localhost:3000/cartProducts')
+    this.httpclient.get(this.cartProductUrl)
       .subscribe(
         (res) => {
+
           this.cartProducts = res;
           this.cartcount = Object.keys(res).length;
           console.log('mycart', this.cartProducts);
@@ -65,6 +81,8 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   addCartProductQuantity(cartProductId) {
+    //this.store.dispatch(new CartActions.AddCartProduct(cartProductId));
+
     this.cartservice.getCartProductById(cartProductId)
       .subscribe(
         (result) => {
@@ -86,6 +104,7 @@ export class CartComponent implements OnInit, OnDestroy {
       );
     //update view template.
     this.getCartProducts();
+
   }
 
   removeCartProductQuantity(cartProductId) {

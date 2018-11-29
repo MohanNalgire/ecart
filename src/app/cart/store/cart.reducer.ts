@@ -1,18 +1,30 @@
-import { CartActionTypes, CartActions } from "./cart.actions";
+import { Action } from '@ngrx/store';
+import { Cart } from "../models/cart.model";
+import * as CartActions from "./cart.actions";
 
+const initialState:Cart = {
+    title: 'string',
+    description: 'string',
+    id: 0,
+    price: 0,
+    quantity: 0,
+    quantityPrice:0,
+    image: 'string'
+};
 
-export let initialState = [];
+export function reducer(state:Cart[] =[initialState], action: CartActions.Actions) {
 
-export function reducer(state=initialState, action: CartActions) {  
     switch (action.type) {
-        case CartActionTypes.CART_PRODUCT_ADD: 
+        case CartActions.CART_PRODUCT_LOAD:
             return [...state, action.payload];
-        case CartActionTypes.CART_PRODUCT_REMOVE: 
-            let product = action.payload;        
-            return state.filter((el)=>el.id != product.id);
-        case CartActionTypes.CART_PRODUCT_UPDATE:
-            return [...state,action.payload];
-        default: 
+        case CartActions.CART_PRODUCT_ADD:
+            return [...state, action.payload];
+        case CartActions.CART_PRODUCT_REMOVE:
+            state.splice(action.payload,1);
+            return state;
+        case CartActions.CART_PRODUCT_UPDATE:
+            return [...state, action.payload];
+        default:
             return state
     }
 }

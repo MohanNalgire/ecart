@@ -2,25 +2,31 @@ import { Action } from '@ngrx/store'
 import { Cart } from '../models/cart.model';
 
 
-export enum CartActionTypes {  
-    CART_PRODUCT_ADD     = 'CART_PRODUCT_ADD',
-    CART_PRODUCT_REMOVE  = 'CART_PRODUCT_REMOVE',
-    CART_PRODUCT_UPDATE  = 'CART_PRODUCT_UPDATE'
+
+export const CART_PRODUCT_LOAD    = '[CART_PRODUCT] LOAD';
+export const CART_PRODUCT_ADD     = '[CART_PRODUCT] ADD';
+export const CART_PRODUCT_REMOVE  = '[CART_PRODUCT] REMOVE';
+export const CART_PRODUCT_UPDATE  = '[CART_PRODUCT] UPDATE';
+
+
+export class LoadCartProduct implements Action{
+    readonly type = CART_PRODUCT_LOAD
+    constructor(public payload: Cart){}
+} 
+
+export class AddCartProduct implements Action {  
+    readonly type = CART_PRODUCT_ADD
+    constructor(public payload: number){}
 }
 
-export class AddProduct implements Action {  
-    readonly type = CartActionTypes.CART_PRODUCT_ADD
-    constructor(public payload: any){}
+export class RemoveCartProduct implements Action {  
+    readonly type = CART_PRODUCT_REMOVE
+    constructor(public payload: number){}
 }
 
-export class RemoveProduct implements Action {  
-    readonly type = CartActionTypes.CART_PRODUCT_REMOVE
-    constructor(public payload: any){}
+export class UpdateCartProduct implements Action {
+    readonly type = CART_PRODUCT_UPDATE
+    constructor(public payload:number){}
 }
 
-export class UpdateProduct implements Action {
-    readonly type = CartActionTypes.CART_PRODUCT_UPDATE
-    constructor(public payload:any){}
-}
-
-export type CartActions = AddProduct | RemoveProduct | UpdateProduct;  
+export type Actions = AddCartProduct | RemoveCartProduct | UpdateCartProduct | LoadCartProduct;  
