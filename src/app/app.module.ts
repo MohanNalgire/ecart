@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+//NgRx Modules
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
-
 
 import { ProductsDashboardComponent } from './products-dashboard/products-dashboard.component';
 
@@ -14,25 +16,16 @@ import { ProductsDashboardComponent } from './products-dashboard/products-dashbo
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-
-
 //router Module
 import { AppRoutingRoutingModule } from './_shared/app-routing.module';
 
 //Environment 
 import { environment } from './../environments/environment';
 
-//NgRx Modules
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-
-
-import { reducer} from './store/reducers/cart.reducer';
-
+import { reducer} from './cart/store/cart.reducer';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+//Services
 import { ErrorHandlerService } from './_shared/error-handler.service';
 import { ProductService } from './product/services/product.service';
 

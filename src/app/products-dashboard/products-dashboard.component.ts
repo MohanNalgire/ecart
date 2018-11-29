@@ -19,8 +19,8 @@ export class ProductsDashboardComponent implements OnInit {
   productById:any={};
   cartIteamCount:number;
 
-  productUrl:string= 'http://localhost:3000/products';
-  
+  productUrl:string     = 'http://localhost:3000/products';
+  cartProductUrl:string = 'http://localhost:3000/cartProducts';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -74,7 +74,7 @@ export class ProductsDashboardComponent implements OnInit {
     .subscribe(
       (data)=>{
         if(data){
-          this.httpclient.post(this.productUrl,data,this.httpOptions)
+          this.httpclient.post(this.cartProductUrl,data,this.httpOptions)
           .subscribe(
             (data)=>{
               console.log("POST Request is successful ", data);
