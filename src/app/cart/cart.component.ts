@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from './services/cart.service';
 
@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   //Class properties declaration.
   cartcount: number = 0;
   cartProducts: any;
@@ -45,7 +45,17 @@ export class CartComponent implements OnInit {
   }
 
   removeCartItem(cartProductId) {
-    this.cartservice.removeCartItem(cartProductId).subscribe();
+    this.cartservice.removeCartItem(cartProductId).subscribe(
+      (data) => {
+        console.log('removeCartItem Data:', data);
+        //update view template.
+        this.getCartProducts();
+      },
+      (error) => {
+        console.error('removeCartItem error:', error);
+      },
+      () => { console.info('cremoveCartItem completed.'); }
+    );
   }
 
 
@@ -100,5 +110,7 @@ export class CartComponent implements OnInit {
     this.getCartProducts();
   }
 
+  ngOnDestroy() {
 
+  }
 }
