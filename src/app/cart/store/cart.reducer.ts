@@ -16,14 +16,26 @@ export function reducer(state:Cart[] =[initialState], action: CartActions.Action
 
     switch (action.type) {
         case CartActions.CART_PRODUCT_LOAD:
-            return [...state, action.payload];
+            return ({
+                ...state, 
+                Loaded:false,
+                Loading:false
+            });
         case CartActions.CART_PRODUCT_ADD:
-            return [...state, action.payload];
+            return ({
+                ...state, 
+                Loaded:false,
+                Loading:false
+            });
         case CartActions.CART_PRODUCT_REMOVE:
-            state.splice(action.payload,1);
+            
             return state;
         case CartActions.CART_PRODUCT_UPDATE:
-            return [...state, action.payload];
+            return ({
+                ...state, 
+                Loaded:false,
+                Loading:false
+            });
         default:
             return state
     }
